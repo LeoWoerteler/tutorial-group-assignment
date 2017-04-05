@@ -1,0 +1,63 @@
+1 A C E F
+2 F C D ! A B E 
+3 A B C E F D
+4 A B E F
+5 F D A B C ! E 
+6 A C D B E F
+7 B C E F D A
+8 A B C
+9 A ! B 
+10 B E F D A C
+11 A B C
+12 C B A F
+13 A C B D
+14 A C E F B D
+15 A B E F D C
+16 A C F E
+17 A B E F C D
+18 A B C D F
+19 E F C A D ! B 
+20 A C E F
+21 A B C
+22 B A C
+23 B A C F E D
+24 E A B C F D
+25 C ! A B D E F 
+26 A B C F E D
+27 D E F B A C
+28 B E F D C ! A 
+29 B C E
+30 A B C F E D
+31 A D F C ! B E 
+32 B C F E D A
+33 B C E F D
+34 A C E F D
+35 A B C E F D
+36 B C A
+37 A B E F D C
+38 F E B C D A
+39 C B A F E D
+40 A C E F D ! B 
+41 A B C
+42 F E D B
+43 A B C F E D
+44 A C E F
+45 B C F E D A
+46 A B E F
+47 E F A D
+48 B C A E F D
+49 A E F D C ! B 
+50 A
+51 B C D E F
+52 F E D C A B
+53 A B C E F D
+54 A F E D C B
+55 A B C E F D
+56 A B C D E F
+57 B A C E
+58 C B ! A D E F 
+59 C B A F E D
+60 F E B C D A
+61 F E D C
+62 B C D
+63 A
