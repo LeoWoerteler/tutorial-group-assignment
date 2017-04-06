@@ -30,6 +30,12 @@ public class FitnessLeo implements FitnessFunction {
 			}
 		}
 
-		return Math.pow(0.95, Math.max(0, maxSize - minSize - 1)) * fitness;
+		int over = 0;
+		for (int gid = 0; gid < groupSizes.length; gid++) {
+			final int diff = Math.max(0, groupSizes[gid] - caps[gid]);
+			over += diff * diff;
+		}
+
+		return Math.pow(0.95, Math.sqrt(over)) * fitness;
 	}
 }

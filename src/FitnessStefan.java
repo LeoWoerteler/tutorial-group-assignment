@@ -23,7 +23,7 @@ public class FitnessStefan implements FitnessFunction {
 			if (prio < 0) {
 				return 0;
 			}
-			fitness += Math.pow(1 - penalties[prio], prio);
+			fitness += Math.pow(1 - this.penalties[prio], prio);
 		}
 
 		int minSize = candidate.length, maxSize = 0;
