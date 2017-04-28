@@ -26,17 +26,12 @@ public class FitnessStefan implements FitnessFunction {
 			fitness += Math.pow(1 - this.penalties[prio], prio);
 		}
 
-		int minSize = candidate.length, maxSize = 0;
+		int sqError = 0;
 		for (int gid = 0; gid < groupSizes.length; gid++) {
-			final int size = groupSizes[gid];
-			if (size < minSize) {
-				minSize = size;
-			}
-			if (size > maxSize) {
-				maxSize = size;
-			}
+			final int diff = Math.max(0, groupSizes[gid] - caps[gid]);
+			sqError += diff * diff;
 		}
 
-		return Math.pow(0.95, Math.max(0, maxSize - minSize - 2)) * fitness;
+		return Math.pow(0.95, sqError) * fitness;
 	}
 }
