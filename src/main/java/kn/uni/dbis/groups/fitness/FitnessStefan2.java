@@ -1,3 +1,4 @@
+package kn.uni.dbis.groups.fitness;
 
 public class FitnessStefan2 implements FitnessFunction {
 

@@ -1,0 +1,17 @@
+# Mail Configuration
+mail.host=imap.uni-konstanz.de
+mail.debug=False
+mail.store.protocol=imap
+mail.imap.host=imap.uni-konstanz.de
+mail.transport.protocol=smtp
+mail.smtp.host=smtp.uni-konstanz.de
+mail.smtp.starttls.enable=true
+mail.smtp.port=587
+mail.smtp.auth=true
+
+mail.from=<MAIL_USER>@uni-konstanz.de
+mail.user=<MAIL_USER>
+mail.password=<PASSWORD>
+
+smime.key.path=</PATH/TO/CERT>
+smime.key.password=<PASSWORD>

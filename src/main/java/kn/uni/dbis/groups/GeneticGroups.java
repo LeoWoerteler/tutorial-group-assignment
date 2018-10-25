@@ -1,18 +1,13 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+package kn.uni.dbis.groups;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
+
+import kn.uni.dbis.groups.fitness.FitnessFunction;
 
 public final class GeneticGroups {
 
@@ -32,18 +27,13 @@ public final class GeneticGroups {
 			this.assignments = assignments;
 			this.fitness = fitness;
 		}
-	
+
 		@Override
 		public boolean equals(Object obj) {
-			if (this == obj) {
-				return true;
-			}
-			if (!(obj instanceof Candidate)) {
-				return false;
-			}
-			return Arrays.equals(this.assignments, ((Candidate) obj).assignments);
+			return this == obj ||
+					obj instanceof Candidate && Arrays.equals(this.assignments, ((Candidate) obj).assignments);
 		}
-	
+
 		@Override
 		public int hashCode() {
 			return Arrays.hashCode(this.assignments);
@@ -173,70 +163,5 @@ public final class GeneticGroups {
 			}
 		}
 		return winner.assignments;
-	}
-
-	public static void main(final String[] args) throws IOException {
-		final String file = "anonym.in";
-		final String[] tutorials = { "A", "B", "C", "D", "E", "F" };
-		final int[] caps = { 10, 12, 12, 10, 10, 10 };
-		final int n = tutorials.length;
-
-		final Map<String, Integer> tuts = new LinkedHashMap<>();
-		final Map<String, Integer> tutorialMap = new HashMap<>();
-		for (int i = 0; i < n; i++) {
-			tuts.put(tutorials[i], caps[i]);
-			tutorialMap.put(tutorials[i], i);
-		}
-
-		final List<String> ids = new ArrayList<>();
-		final List<int[]> priorities = new ArrayList<>();
-		try (final BufferedReader br = new BufferedReader(
-				new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
-			for (String line; (line = br.readLine()) != null;) {
-				final String trimmed = line.trim();
-				if (trimmed.length() == 0 || line.startsWith("#")) {
-					continue;
-				}
-
-				final String[] parts = trimmed.split("\\s+");
-				ids.add(parts[0]);
-				final int[] prios = new int[n];
-				Arrays.fill(prios, -2);
-
-				int blacklist = prios.length;
-				int pos = 0;
-				for (int i = 1; i < parts.length; i++) {
-					final String choice = parts[i];
-					if (choice.equals("!")) {
-						blacklist = i + 1;
-						break;
-					}
-					prios[tutorialMap.get(choice)] = i - 1;
-					pos++;
-				}
-
-				while (blacklist < parts.length) {
-					prios[tutorialMap.get(parts[blacklist++])] = -1;
-				}
-
-				for (int i = 0; i < prios.length; i++) {
-					if (prios[i] == -2) {
-						prios[i] = pos;
-					}
-				}
-
-				priorities.add(prios);
-			}
-		}
-
-		final int[][] prioArray = priorities.toArray(new int[priorities.size()][]);
-		System.out.println(prioArray.length);
-
-		final GeneticGroups algo = new GeneticGroups(tuts, new FitnessLeo());
-		final int[] result = algo.optimize(prioArray, 10000);
-		System.out.println("\nStudent\tTutorium");
-		for (int i = 0; i < result.length; i++) {
-			System.out.println(ids.get(i) + "\t" + tutorials[result[i]]);
-		}
 	}
 }
